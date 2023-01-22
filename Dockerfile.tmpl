@@ -1,4 +1,4 @@
-FROM golang
+FROM {{ .image }}
 
 COPY --from=nvim:latest /usr/local/share/nvim /usr/local/share/nvim
 COPY --from=nvim:latest /usr/local/bin /usr/local/bin
@@ -23,12 +23,9 @@ ENV TERM xterm-256color
 RUN ln -s /root/.config/zsh/zshenv /root/.zshenv && \
     ln -s /root/.config/zsh/zshrc /root/.zshrc
 
-RUN touch /.nvim-go
+RUN touch /.nvim-{{ .lang }}
 
-RUN go install golang.org/x/tools/gopls@latest && \
-go install golang.org/x/tools/cmd/goimports@latest && \
-go install github.com/incu6us/goimports-reviser/v3@latest
-
+RUN {{ .run }}
 
 ENTRYPOINT ["/usr/bin/zsh"]
 

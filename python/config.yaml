@@ -1,0 +1,8 @@
+lang: python
+image: python
+run: |
+  pip install \
+    python-lsp-server \
+    mypy \
+    black \
+    reorder-python-imports
