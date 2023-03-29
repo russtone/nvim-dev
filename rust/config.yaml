@@ -1,0 +1,4 @@
+lang: rust
+image: rust
+run: |
+  rustup component add rust-src rust-analyzer rustfmt
